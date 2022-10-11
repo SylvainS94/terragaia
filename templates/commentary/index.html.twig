@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Commentaires{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Commentaires</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Coaching</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>N°Id</th>
+                <th>Crée le</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentary in commentaries %}
+            <tr>
+                <td>{{ commentary.service.title }}</td>
+                <td>{{ commentary.author.firstname }}</td>
+                <td>{{ commentary.author.lastname }}</td>
+                <td>{{ commentary.comment }}</td>
+                <td>{{ commentary.id }}</td>
+                <td>{{ commentary.createdAt ? commentary.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commentary.updatedAt ? commentary.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_commentary_show', {'id': commentary.id}) }}" class="btn btn-info mt-2" title="Voir le commentaire"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <form method="post" action="{{ path('app_commentary_delete', {'id': commentary.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Commentaire définitivement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentary.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Commentaire"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun Commentaire trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

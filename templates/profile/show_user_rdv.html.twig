@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon RDV D'information ou ma Séance de Coaching/Accompagnement{% endblock %}
+
+{% block body %}
+    <h1>Mon RDV D'information ou ma Séance de Coaching/Accompagnement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Type de RDV</th>
+                <td>{{ booking.choices.title }}</td>
+            </tr>
+            <tr>
+                <th>Coaching/Accompagnement choisi pour le RDV</th>
+                <td>{{ booking.services.title  }}</td>
+            </tr>
+            <tr>
+                <th>Date et Heure du RDV</th>
+                <td>Le {{booking.disponibility.dateSlot}} à {{booking.disponibility.hourslot.format('H:i')}} heure</td>
+            </tr>
+            <tr>
+                <th>Message d'Information</th>
+                <td>{{ booking.message}} </td>
+            </tr>
+            <tr>
+                <th>Votre Identité</th>
+                <td>{{ booking.user.firstname}} {{ booking.user.lastname}}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ booking.disponibility.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <a href="{{ path('app_user_show_rdvs', {'id': booking.id}) }}" class="btn btn-view" title="Retour Liste"><i class="fa-solid fa-circle-arrow-left mx-2 fa-beat"></i>Retour</a>
+    </div>
+    <hr>
+   
+
+{% endblock %}

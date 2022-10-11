@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+
+{% block body %}
+    <h1>Mentions légales</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ legal.firstname }} {{ legal.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ legal.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ legal.email }}</td>
+            </tr>
+            <tr>
+                <th>Addresse</th>
+                <td>{{ legal.adress }}</td>
+            </tr>
+            <tr>
+                <th>Infos Hébergeur</th>
+                <td>{{ legal.information }}</td>
+            </tr>
+            <tr>
+                <th>Contestations</th>
+                <td>{{ legal.dispute }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ legal.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_legal_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_legal_edit', {'id': legal.id}) }}"class="btn btn-warning" title="Modifier la Disponibilité"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+    <hr>
+
+{% endblock %}

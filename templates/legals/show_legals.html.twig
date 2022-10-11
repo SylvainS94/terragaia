@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'include/_flashes.html.twig' %}
+   
+        {% for legal in legals %}
+
+            <div class="row">
+                <div class="col-10 my-4 mx-auto text-center">
+                    <div class="card-service">
+                        <div class="card-header col-12">
+                            <h1 class="card-title text-center mb-5 col-12">Mentions Légales</h1>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-header text-center my-4 col-10">Nom de la Société : TERRA-GAÏA COACHING PROFESSIONNEL</h4>
+                            <h4 class="card-text my-4 col-10 mx-auto">Addresse Postale : {{ legal.adress }}</h4>
+                            <h4 class="card-text my-4 col-10 mx-auto">Numéro de téléphone : {{ legal.phone }}</h4>
+                            <h4 class="card-text my-4 col-10 mx-auto">Adresse e-mail : {{ legal.email }}</h4>
+                            <h4 class="card-text my-4 col-10 mx-auto">Directrice de la publication : {{ legal.firstname }} {{ legal.lastname }}</h4>
+                            <p class="card-text my-4 col-10 mx-auto">Informations relatives à l'hébergeur : {{ legal.information}}</p>
+                            <p class="card-text my-4 col-10 mx-auto">{{ legal.dispute}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        {% endfor %}
+
+{% endblock %}

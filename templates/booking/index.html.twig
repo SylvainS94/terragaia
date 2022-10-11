@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion RDVs d'Information et Séances de Coaching/Accompagnement{% endblock %}
+
+{% block body %}
+    <h1>Gestion RDVs d'Information et Séances de Coaching/Accompagnement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type de RDV</th>
+                <th>Coaching/Accompagnement</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Identité</th>
+                <th>Message</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.choices.title }}</td>
+                <td>{{ booking.services.title }}</td>
+                <td>{{ booking.disponibility.dateslot }}</td>
+                <td>{{ booking.disponibility.hourslot.format('H:i') }}</td>
+                <td>{{ booking.user.firstname }} {{ booking.user.lastname }}</td>
+                <td>{{ booking.message | length > 80 ? booking.message|slice(0,80) ~ '...' : booking.message }}</td>
+                <td>{{ booking.id }}</td>
+                <td>
+                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}" class="btn btn-info mt-2" title="Voir le RDV d'Information ou la Séance de Coaching/Accompagnement"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <form method="post" action="{{ path('app_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce RDV d'Information ou cette Séance de Coaching/Accompagnement définitivement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le RDV"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun RDV d'Information ou Séance de Coaching/Accompagnement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau RDV d'Information ou une Séance de Coaching/Accompagnement</h5>
+         <h5 class="text-warning col-12">Veuillez préalablement créer une disponibilité pour pouvoir enregistrer un nouveau RDV d'Information ou une Séance de Coaching/Accompagnement.</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_admin_rdvs') }}" class="btn btn-view mt-2" title="Créer un nouveau RDV d'Information ou une nouvelle Séance de Coaching/Accompagnement"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

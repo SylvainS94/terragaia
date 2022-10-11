@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Thème Qui suis-je?{% endblock %}
+
+{% block body %}
+    <h1>Gestion Thème Qui suis-je?</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Sous-Titre</th>
+                <th>Contenu</th>
+                <th>Image</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td>{{ theme.title }}</td>
+                <td>{{ theme.subtitle }}</td>
+                <td>{{ theme.content | length > 80 ? theme.content|slice(0,80) ~ '...' : theme.content }}</td>
+                <td>{{ theme.picture }}</td>
+                <td>{{ theme.id }}</td>
+                <td>
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}" class="btn btn-info mt-2" title="Voir le Thème Qui suis-je ? "><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-warning mt-2" title="Modifier le Thème Qui suis-je ? "><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_theme_delete', {'id': theme.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Thème Qui suis-je ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ theme.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Thème Qui suis-je ?"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun Thème Qui suis-je ? trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau Thème Qui suis-je ?</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_theme_new') }}" class="btn btn-view mt-2" title="Créer un nouveau Thème Qui suis-je ?"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

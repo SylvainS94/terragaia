@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Disponibilités{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Disponibilités</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Jour</th>
+                <th>Heure</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for disponibility in disponibilities %}
+            <tr>
+                <td>{{ disponibility.dateSlot }}</td>
+                <td>{{ disponibility.hourSlot ? disponibility.hourSlot|date('H:i') : '' }}</td>
+                <td>{{ disponibility.id }}</td>
+                <td>
+                    <a href="{{ path('app_disponibility_show', {'id': disponibility.id}) }}" class="btn btn-info mt-2" title="Voir la disponibilité"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_disponibility_edit', {'id': disponibility.id}) }}" class="btn btn-warning mt-2" title="Modifier le RDV"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_disponibility_delete', {'id': disponibility.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer cette disponibilité définitivement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ disponibility.id) }}">
+                        <button class="btn btn-danger" title="Supprimer la Disponibilité"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune Disponibilité trouvéé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer nouvelle Disponibilité</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_disponibility_new') }}" class="btn btn-view mt-2" title="Créer un nouveau Message"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Mon Profil</h1>
+
+    {% include 'include/_flashes.html.twig' %}
+
+    <div class="row">
+        <div class="col-5">
+            <a href="{{ path('app_change_user_password')}}"class="btn btn-warning mt-4" title="Modifier mon Mot de passe"><i class="fa fa-edit fa-beat mx-2"></i>Changer mon Mot de passe</a>
+        </div>
+    </div>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Identité</th>
+                <th>Catégorie de Coachings/Accompagnements</th>
+                <th>Coaching ou Accompagnement</th>
+                <th>Tél</th>
+                <th>E-mail</th>
+                <th>Entreprise/Association/Ecole</th>
+                <th>Profession/Cursus Etudiant</th>
+                <th>Objet de votre Demande</th>
+                <th>N°Id</th>
+                <th>Créé le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                <td>{{ app.user.category }}</td>
+                <td>{{ app.user.service }}</td>
+                <td>{{ app.user.phone }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.society }}</td>
+                <td>{{ app.user.job }}</td>
+                <td>{{ app.user.AskObject | length > 80 ? app.user.AskObject|slice(0,80) ~ '...' : app.user.AskObject }}</td>
+                <td>{{ app.user.id }}</td>
+                <td>{{ app.user.createdAt | date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('app_show_user_profil', {'id': app.user.id}) }}" class="btn btn-info" title="Voir mon Profil"><i class="fa fa-user fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_update_user', {'id': app.user.id}) }}"class="btn btn-warning" title="Modifier mon Profil"><i class="fa fa-user-edit fa-beat mx-2"></i>Modifier</a>
+                    <a href="{{ path('app_delete_user', {'id': app.user.id}) }}" class="btn btn-danger" title="Supprimer mon Compte Utilisateur"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</a>
+                </td> 
+            </tr>
+        </tbody>
+
+    </table>
+
+{% endblock %}

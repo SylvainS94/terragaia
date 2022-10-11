@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mail de renouvellement de mot de passe{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-3">Un email de renouvellement de mot de passe vous a été envoyé</h1>
+    <p>
+        Si votre compte existe sur notre site internet, un lien dans ce mail qui vous a été envoyé, vous permet de reinitialiser votre mot de passe.
+        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous n'avez pas reçu l'email, vérifiez vos spams ou cliquez <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+{% endblock %}

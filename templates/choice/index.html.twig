@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Types de RDV{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion des Types de RDV</h1>
+
+    <table class="table">
+        <thead>
+            <tr> 
+                <th>Titre du Type</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for choice in choices %}
+            <tr>
+                <td>{{ choice.title }}</td>
+                <td>{{ choice.id }}</td>
+                <td>
+                    <a href="{{ path('app_choice_show', {'id': choice.id}) }}" class="btn btn-info mt-2" title="Voir le Type de RDV"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_choice_edit', {'id': choice.id}) }}" class="btn btn-warning mt-2" title="Modifier le Type de RDV"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_choice_delete', {'id': choice.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Type de RDV définitivement?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ choice.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Type de RDV"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun Type de RDV trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau Type de RDV</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_choice_new') }}" class="btn btn-view mt-2" title="Créer un nouveau Type de RDV"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+
+{% endblock %}

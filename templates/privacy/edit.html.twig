@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les Politiques de Confidentialité{% endblock %}
+
+{% block body %}
+    <h1>Modifier les Politiques de Confidentialité</h1>
+    <hr>
+    {{ include('privacy/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_privacy_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+{% endblock %}

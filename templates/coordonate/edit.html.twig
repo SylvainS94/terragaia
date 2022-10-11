@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les Coordonnées de Contact{% endblock %}
+
+{% block body %}
+    <h1>Modifier les Coordonnées Contact</h1>
+    <hr>
+    {{ include('coordonate/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_coordonate_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Supprimer le Message*</h5>
+        {{ include('coordonate/_delete_form.html.twig') }}
+        <p class="col-12">*Attention ! toute suppression est définitive.</p>
+    </div>
+    <hr>
+{% endblock %}

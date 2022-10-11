@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Messages{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Messages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th> 
+                <th>Nom</th>   
+                <th>Email</th> 
+                <th>Titre</th>
+                <th>Message</th>
+                <th>N°Id</th>
+                <th>Crée le</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.user.firstname}}</td> 
+                <td>{{ contact.user.lastname}}</td> 
+                <td>{{ contact.user.email}}</td>
+                <td>{{ contact.title }}</td>
+                <td>{{ contact.message | length > 80 ? contact.message|slice(0,80) ~ '...' : contact.message }}</td>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contact.updatedAt ? contact.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}" class="btn btn-info mt-2" title="Voir le Message"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}" class="btn btn-warning mt-2" title="Modifier le Message"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Message définitivement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Message"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun Message trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau Message</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_contact_new') }}" class="btn btn-view mt-2" title="Créer unn nouveau Message"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

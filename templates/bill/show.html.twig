@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis{% endblock %}
+
+{% block body %}
+    <h1>Devis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ bill.user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ bill.user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ bill.id }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ bill.content }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ bill.createdAt ? bill.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifié le</th>
+                <td>{{ bill.updatedAt ? bill.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_bill_index') }}" class="btn btn-view" title="Retour Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <a href= "{{ asset ('uploads/') ~ bill.content }}" alt="{{ bill.id }}"class="btn btn-info" title="Voir mon devis" target="_blank"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <a href= "{{ asset ('uploads/') ~ bill.content }}" download class="btn btn-warning" title="Télécharger mon devis"><i class="fa fa-download mx-2 fa-beat"></i>Télécharger</a>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_bill_edit', {'id': bill.id}) }}"class="btn btn-warning" title="Modifier mon Devis"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Supprimer mon Devis*</h5>
+        {{ include('bill/_delete_form.html.twig') }}
+        <p class="col-12">*Attention ! toute suppression est définitive.</p>
+    </div>
+    <hr>
+
+{% endblock %}

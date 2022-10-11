@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Disponibilités{% endblock %}
+
+{% block body %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Jour du RDV/Séance</th>
+      <th scope="col">Heure du début du RDV/Séance</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for slot in slots %}
+      <tr>
+      <td>{{ slot.dateSlot }}</td>
+      <td>{{ slot.hourSlot.format('H:i') }}</td>
+      <td><a href="{{ path('app_booking_new', {'id': slot.id}) }}">Valider</a></td>
+    </tr>
+  {% endfor %}
+    
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Coachings/Accompagnements{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Coachings/Accompagnements</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Catégorie de Clients</th>
+                <th>Titre</th>
+                <th>Sous-titre</th>
+                <th>Contenu</th>
+                <th>Image</th>
+                <th>Clientèle ciblée</th>
+                <th>Nbre Séances Min</th>
+                <th>Nbre Séances Max</th>
+                <th>Durée 1 Séance</th>
+                <th>Rythme Séances/Semaine</th>
+                <th>Prix 1 Séance</th>
+                <th>Modalités</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.category.title }}</td>
+                <td>{{ service.title }}</td>
+                <td>{{ service.subtitle }}</td>
+                <td>{{ service.content | length > 80 ? service.content|slice(0,80) ~ '...' : service.content}}</td>
+                <td>{{ service.picture }}</td>
+                <td>{{ service.target | length > 80 ? service.target|slice(0,80) ~ '...' : service.target }}</td>
+                <td>{{ service.sessionmin }}</td>
+                <td>{{ service.sessionmax }}</td>
+                <td>{{ service.duration }}</td>
+                <td>{{ service.rythm }}</td>
+                <td>{{ service.price | length > 80 ? service.price|slice(0,80) ~ '...' : service.price }}</td>
+                <td>{{ service.modality | length > 80 ? service.modality|slice(0,80) ~ '...' : service.modality }}</td>
+                <td>{{ service.id }}</td>
+                <td>
+                    <a href="{{ path('app_service_show', {'id': service.id}) }}" class="btn btn-info mt-2" title="Voir le Coaching/Accompagnement"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-warning mt-2" title="Modifier le Coaching/Accompagnement"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_service_delete', {'id': service.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Coaching/Accompagnement ? *Les Services liés ne seront pas supprimés');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Coaching"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun Coaching/Accpompagnement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{# </div> #}
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau Coaching/Accompagnement</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_service_new') }}" class="btn btn-view mt-2" title="Créer un nouveau Coaching/Accompagnement"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

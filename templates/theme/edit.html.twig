@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Thème Qui suis-je ?{% endblock %}
+
+{% block body %}
+    
+    <h1>Modifier le Thème Qui suis-je ?</h1>
+    <hr>
+   {{ include('theme/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_theme_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Supprimer le Thème Qui suis-je ?*</h5>
+       {{ include('theme/_delete_form.html.twig') }}
+        <p class="col-12">*Attention ! toute suppression est définitive.</p>
+    </div>
+    <hr>
+{% endblock %}

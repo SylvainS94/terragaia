@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer  cet Utilisateur , toutes ses informations et identifiants seront définitivements supprimés conformément au RGPD ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+    <button class="btn btn-danger"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+</form>
+

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+
+{% block body %}
+    <h1>Politique de confidentialité</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ privacy.firstname }} {{ privacy.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ privacy.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ privacy.email }}</td>
+            </tr>
+            <tr>
+                <th>Addresse</th>
+                <td>{{ privacy.adress }}</td>
+            </tr>
+            <tr>
+                <th>Accès, Hébergeur</th>
+                <td>{{ privacy.access }}</td>
+            </tr>
+            <tr>
+                <th>Traitement des données</th>
+                <td>{{ privacy.process }}</td>
+            </tr>
+            <tr>
+                <th>Cookies</th>
+                <td>{{ privacy.cookie }}</td>
+            </tr>
+            <tr>
+                <th>Analyse/Pub</th>
+                <td>{{ privacy.analytic }}</td>
+            </tr>
+            <tr>
+                <th>Réseaux Sociaux</th>
+                <td>{{ privacy.network }}</td>
+            </tr>
+            <tr>
+                <th>Droits Utilisateur</th>
+                <td>{{ privacy.law }}</td>
+            </tr>
+            <tr>
+                <th>Possibilités d'Opposition</th>
+                <td>{{ privacy.possibility }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ privacy.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_privacy_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_privacy_edit', {'id': privacy.id}) }}"class="btn btn-warning" title="Modifier la Politique de Confidentialité"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+    <hr>
+
+{% endblock %}

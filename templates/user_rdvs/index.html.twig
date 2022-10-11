@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prendre un premier RDV d'Information ou réserver une ou plusieurs Séances de Coaching/Accompagnement selon mes disponibilités{% endblock %}
+
+{% block body %}
+
+<h1>Prendre un premier RDV d'Information ou réserver une ou plusieurs Séances de Coaching/Accompagnement, selon mes disponibilités</h1>
+<h5 class="col-12 text-center text-warning my-5">Rappel : Votre première séance sera un "RDV d'Information" à distance et gratuit, veuillez choisir Type de de RDV : "RDV d'Information" puis le "Coaching/Accompagnement" souhaité.</h5> 
+<p class="col-12 text-center my-2">Nous pourrons ensemble déterminer votre besoin, établir votre devis personnalisé qui vous sera envoyé dans votre Espace Utilisateur dans la rubrique "Mes Devis" et fixer ensemble les prochaines séances éventuelles.</p>
+<p class="col-12 text-center my-2">Afin que la préparation de votre premier RDV d'Information soit optimal, veuillez si possible compléter votre Profil dans votre Espace Membre avec le nom de votre Société, Entreprise, Association, Ecole... ainsi que votre profession, cursus étudiant, ou métier souhaité, pour cela cliquez sur Espace Utilisateur et cliquez sur "Mon Profil" puis "Modifier"</p>
+    
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class=" col-2 mx-auto">
+        <button class="mx-auto btn-warning p-2">{{ button_label|default('Choisir ce Jour') }}</button>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

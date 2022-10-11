@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie de Clients{% endblock %}
+
+{% block body %}
+    <h1>Catégorie de Clients</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ category.title }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ category.content }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ category.picture }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_category_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_category_edit', {'id': category.id}) }}"class="btn btn-warning" title="Modifier la Catégorie de Clients"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Supprimer la Catégorie*</h5>
+        {{ include('category/_delete_form.html.twig') }}
+        <p class="col-12">*Attention ! toute suppression est définitive.</p>
+    </div>
+    <hr>
+{% endblock %}

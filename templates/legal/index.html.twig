@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Mentions légales{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Mentions légales</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Responsable</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Addresse</th>
+                <th>Infos Hébergeur</th>
+                <th>Contestations</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for legal in legals %}
+            <tr>
+                <td>{{ legal.firstname }} {{ legal.lastname }}</td>
+                <td>{{ legal.phone }}</td>
+                <td>{{ legal.email }}</td>
+                <td>{{ legal.adress }}</td>
+                <td>{{ legal.information | length > 80 ? legal.information|slice(0,80) ~ '...' : legal.information }}</td>
+                <td>{{ legal.dispute | length > 80 ? legal.dispute|slice(0,80) ~ '...' : legal.dispute }}</td>
+                <td>{{ legal.id }}</td>
+                <td>
+                    <a href="{{ path('app_legal_show', {'id': legal.id}) }}" class="btn btn-info mt-2" title="Voir les Mentions légales"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_legal_edit', {'id': legal.id}) }}" class="btn btn-warning mt-2" title="Modifier les Mentions légales"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucune Mentions légales trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

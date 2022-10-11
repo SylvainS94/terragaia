@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coordonnées de Contact{% endblock %}
+
+{% block body %}
+    <h1>Coordonnées de Contact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ coordonate.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ coordonate.email }}</td>
+            </tr>
+            <tr>
+                <th>Addresse</th>
+                <td>{{ coordonate.address }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ coordonate.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_coordonate_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_coordonate_edit', {'id': coordonate.id}) }}"class="btn btn-warning" title="Modifier les Coordonnées de Contact"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+{% endblock %}

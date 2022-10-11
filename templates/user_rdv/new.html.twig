@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation de votre RDV/Séance{% endblock %}
+
+{% block body %}
+	<h1>Nouvelle Réservation de votre RDV/Séance</h1>
+
+	<div class="container">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<div class=" col-2 mx-auto">
+			<button class="btn btn-view">{{ button_label|default('Valider') }}</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+
+{% endblock %}

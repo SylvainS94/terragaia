@@ -1,0 +1,11 @@
+<div class="row nav-cat">
+
+    <p class="d-flex justify-content-around">
+    
+        {% for category in categories %}
+            <span class="d-inline"><a href="{{ path('app_show_services_from_category', {'category_title': category.title, 'id': category.id }) }}" class="cat-in-nav">{{ category.title }}</a></span> 
+        {% endfor %}
+    
+    </p>
+
+</div>

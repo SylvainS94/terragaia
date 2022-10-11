@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Coordonnées de Contact{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Coordonnées de Contact</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>N°Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coordonate in coordonates %}
+            <tr>
+                <td>{{ coordonate.phone }}</td>
+                <td>{{ coordonate.email }}</td>
+                <td>{{ coordonate.address }}</td>
+                <td>{{ coordonate.id }}</td>
+                <td>
+                    <a href="{{ path('app_coordonate_show', {'id': coordonate.id}) }}" class="btn btn-info mt-2" title="Voir les Coordonnées de Contact"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_coordonate_edit', {'id': coordonate.id}) }}" class="btn btn-warning mt-2" title="Modifier les Coordonnées de Contact"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune Coordonnée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

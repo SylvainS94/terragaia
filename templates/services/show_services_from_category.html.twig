@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+     <div class="card-service text-center my-5">
+        <div class="card-header rounded col-12">
+            <h1 class="card-title my-5 col-12">{{ category.title }}</h1>
+        </div>
+        <div class="card-body col-10 my-5 mx-5">
+            <h2 class="card-subtitle card-text col-10 my-2">"{{ category.content }}"</h2>
+            <h5 class="text-warning card-text col-12 my-2">Découvrez mes domaines d’intervention selon votre profil et vos attentes et prenez un RDV d’Information ou réservez une séance de Coaching (par tél/visio).</h5>
+            <h6 class="card-text col-12 my-2">Voici ci-dessous les différents types de Coachings pour {{ category.title }}:</h6>
+        </div>
+    </div>
+
+{% for service in services %}
+   
+    <div class="row">
+        <div class="col-12 my-4 mx-auto text-center">
+        <hr>
+            <div class="card-service card-service-from-category my-5" style="max-width: 100%;">
+                <div class="card-header col-12 my-2 rounded">
+                    <h1 class="card-title col-10 my-5">{{ service.title }}</h1>
+                </div>
+                <div class="col-10 g-0">
+                    <div class="col-md-12 mt-3 my-4">
+                        <img src="{{ asset('uploads/') ~ service.picture }}" class="img-fluid img-custom-service-from-category" alt="{{ service.title }}" >
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body my-5 mx-5">
+                            <p class="card-text col-12">{{ service.subtitle | length > 170 ? service.subtitle|slice(0,170) ~ '...' : service.subtitle }}</p>
+                            <a href="{{ path('app_show_service', {'category_title': service.category.title, 'service_title': service.title,'id': service.id}) }}" class="btn btn-view" title="Voir ce Coaching/Accompagnement en détails"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+        <div class="row">
+            <div class="mx-auto col-10">
+                <p class="alert alert-info text-center">La catégorie {{ category.title }} ne contient pas encore de Coaching/Accompagnement</p>
+        </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+

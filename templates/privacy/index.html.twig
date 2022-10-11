@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Politique de Confidentialité{% endblock %}
+
+{% block body %}
+    <h1>Gestion Politique de Confidentialité</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Responsable</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Addresse</th>
+                <th>Accès</th>
+                <th>Données</th>
+                <th>Cookies</th>
+                <th>Analyse/Pub</th>
+                <th>Réseaux</th>
+                <th>Droits</th>
+                <th>Possibilités</th>
+                <th>Actions</th>
+                <th>N°Id</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for privacy in privacies %}
+            <tr>
+                <td>{{ privacy.firstname }} {{ privacy.lastname }}</td>
+                <td>{{ privacy.phone }}</td>
+                <td>{{ privacy.email }}</td>
+                <td>{{ privacy.adress }}</td>
+                <td>{{ privacy.access | length > 80 ? privacy.access|slice(0,80) ~ '...' : privacy.access }}</td>
+                <td>{{ privacy.process | length > 80 ? privacy.process|slice(0,80) ~ '...' : privacy.process }}</td>
+                <td>{{ privacy.cookie | length > 80 ? privacy.cookie|slice(0,80) ~ '...' : privacy.cookie}}</td>
+                <td>{{ privacy.analytic | length > 80 ? privacy.analytic|slice(0,80) ~ '...' : privacy.analytic }}</td>
+                <td>{{ privacy.network | length > 80 ? privacy.network|slice(0,80) ~ '...' : privacy.network }}</td>
+                <td>{{ privacy.law | length > 80 ? privacy.law|slice(0,80) ~ '...' : privacy.law }}</td>
+                <td>{{ privacy.possibility | length > 80 ? privacy.possibility|slice(0,80) ~ '...' : privacy.possibility }}</td>
+                <td>{{ privacy.id }}</td>
+                <td>
+                    <a href="{{ path('app_privacy_show', {'id': privacy.id}) }}" class="btn btn-info mt-2" title="Voir la Politique de Confidentialité"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_privacy_edit', {'id': privacy.id}) }}" class="btn btn-warning mt-2" title="Modifier la Politique de Confidentialité"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">Aucune Politique de Confidentialité trouvéé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

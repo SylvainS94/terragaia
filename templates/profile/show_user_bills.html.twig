@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Mes Devis</h1>
+
+    <div class="row mt-3">
+        {% include 'include/_flashes.html.twig' %}
+    </div>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5>Total des devis reçus : {{ total }}</h5> 
+        </div> 
+    </div>
+
+    <div class="row mx-auto">
+        <div class="col-10 mt-4">
+
+            <table class="table">
+
+                <thead> {# Début titres des lignes du tableau #}
+                    <tr>
+                        <th>Nom du fichier .pdf</th>
+                        <th>Votre Identité</th>
+                        <th>Votre Email</th>
+                        <th>N°Id</th>
+                        <th>Créé le</th>
+                        <th>Modifié le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead> {# Fin titres des lignes du tableau #}
+
+                <tbody>
+
+                    {% set countIn = 0 %} {# Début calcul Pourcentage pour devis créés par user, on fixe le countIn à 0, on set le countIn à 0 #}
+
+                    {% if bills is not empty %} {# Si les devis de user ne sont pas vide dans bdd #}
+
+                        {% for bill in bills %} {# pour chaque devis dans les devis de user #}
+                            {% if bill.createdAt is not null %} {# Si la propriété createdAt d'un devis n'est pas null donc existe #}
+                                {%  set countIn = countIn + 1 %} {# = Alors, on set +1 le countIn pour chaque devis créé par user #}
+
+                                <tr> {# Début contenu corps du tableau #}
+                                    
+                                    <td>{{ bill.content | slice(0,250) }}</td>
+                                    <td>{{ bill.user.firstname}} {{ bill.user.lastname}}</td>
+                                    <td>{{ bill.user.email }}</td>
+                                    <td>{{ bill.id }}</td>
+                                    <td>{{ bill.createdAt | date('d/m/Y') }}</td>
+                                    <td>{{ bill.updatedAt | date('d/m/Y') }}</td>
+                                    <td>
+                                        <a href= "{{ asset ('uploads/') ~ bill.content }}" alt="{{ bill.id }}"class="btn btn-info" title="Voir mon devis" target="_blank"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                                        <a href="{{ path('app_user_show_bill', {'id': bill.id}) }}" class="btn btn-info" title="Détails de mon devis"><i class="fa fa-info fa-beat mx-2"></i>Détails</a>
+                                        <a href= "{{ asset ('uploads/') ~ bill.content }}" download class="btn btn-warning" title="Télécharger mon devis"><i class="fa fa-download fa-flip mx-2"></i>Télécharger</a>
+                                    </td>
+                                </tr> {# Fin contenu corps du tableau #}
+
+                            {% endif %}
+                        {% endfor %}
+
+                    {% endif %}
+
+                </tbody> {# Fin corps du tableau #}
+
+            </table> {# Fin du tableau #}
+
+            <p>Total : {{ countIn }}</p> {# Total= Valeur du countIn apres calculs plus haut #}
+        </div> {# Fin .col-10 #}
+
+        
+        </div>
+    </div> {# Fin .row #}
+
+
+
+{% endblock %}
+

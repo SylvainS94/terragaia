@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="col-12">Tableau de Bord Utilisateur</h1>
+    <div class="row mt-3 text-center">
+        <h2 class="col-10">Gestion de vos Informations et Fonctionnalités<h2>
+        <h5 class="col-10">Votre Profil Utilisateur, l'Agenda vos RDVs Information et Séances de Coaching/Accompagnement, vos Devis, vos Messages, et vos Commentaires</h5>
+    </div>
+
+    <div class="row mt-3">
+        {% include 'include/_flashes.html.twig' %}
+    </div>
+
+    <hr>
+    <h1 class="col-8">Votre Profil Utilisateur</h1>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total de Comptes créés : {{ totalUsers }}</h5>
+            <a href="{{ path('app_profile') }}" class="btn btn-info mt-2" title="Voir mon Compte"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total de vos Catégories de Coaching : {{ totalCategories }}</h5>
+            <a href="{{ path('app_profile') }}" class="btn btn-info mt-2" title="Voir ma Catégorie de coaching"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a>
+         </div>
+    </div>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total de vos Types de Coaching/Accompagnement: {{ totalServices }}</h5>
+            <a href="{{ path('app_profile') }}" class="btn btn-info mt-2" title="Voir mon type de Coaching/Accompagnement"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a> 
+        </div> 
+    </div>
+    <hr>
+    
+    <h1 class="col-8">Votre Agenda des RDVs d'Information et Séances de Coaching/Accompagnement</h1>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total RDVs pris et reçus : {{ totalBookings }}</h5>
+            <a href="{{ path('app_user_show_rdvs') }}" class="btn btn-info mt-2" title="Voir mon agenda de RDVs"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a> 
+        </div> 
+    </div>
+    <hr>
+
+    <h1 class="col-8">Vos Devis</h1>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total de vos Devis reçus : {{ totalBills }}</h5>
+            <a href="{{ path('app_user_show_bills') }}" class="btn btn-info mt-2" title="Voir les Devis envoyés"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a> 
+        </div> 
+    </div>
+    <hr>
+
+    <h1 class="col-8">Vos Messages</h1>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total des Messages reçus et envoyés : {{ totalContacts }}</h5>
+            <a href="{{ path('app_user_show_contacts') }}" class="btn btn-info mt-2" title="Voir les messages envoyés et reçus"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a> 
+        </div> 
+    </div>
+    <hr>
+
+    <h1 class="col-8">Vos Commentaires</h1>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5 class="col-12">Total des Commentaires envoyés : {{ totalCommentaries }}</h5>
+            <a href="{{ path('app_user_show_commentaries') }}" class="btn btn-info mt-2" title="Voir les commentaires en ligne"><i class="fa fa-magnifying-glass fa-beat mx-2"></i> Voir</a> 
+        </div> 
+    </div>
+
+{% endblock %}

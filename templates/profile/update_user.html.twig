@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   
+    <h1 class="text-center mx-auto my-4">Modifier mon Profil</h1>
+
+    <div class="row">
+        <div class="col-6 mx-auto">
+            {{ form_start(form) }}
+
+            <div class="row mx-auto">
+                <div class="col-6">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.lastname) }}
+                </div>
+             </div>
+    
+            {{ form_row(form.email) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.ask_object) }}
+            {{ form_row(form.society) }}
+            {{ form_row(form.job) }}
+            {{ form_row(form.agreeTerms) }}
+    
+    {{ form_end(form) }}
+
+    
+        </div>
+    </div>
+
+{% endblock %}

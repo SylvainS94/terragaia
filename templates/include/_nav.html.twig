@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+	<div class="container-fluid d-flex">
+
+		<div class="row align-self-center">
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav text-center">
+					<img src="/assets/images/logos/logo_terra_gaia_mini.png" class="nav-logo" alt="terra-gaia-coaching-professionnel-conseil-rh-formation">
+
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+					</li>
+					<li>
+						<a class="nav-link" href="{{ path('app_themes') }}">Qui suis-je?</a>
+					</li>
+					<li>
+						<a class="nav-link" href="{{ path('app_coordonates') }}">Contact</a>
+					</li>
+
+					{% if not app.user %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login')}}">Se connecter</a>
+						</li>
+						<div class="navbar-visitor-info">
+							<a href="https://www.instagram.com/terragaiacoaching/" title="Instagram"><i class="fa fa-brands fa-instagram fa-3x"></i></a>
+                    		<a href="https://www.linkedin.com/in/laurence-debussy-expertrh/" title="Linkedin"><i class="fa fa-brands fa-linkedin fa-3x"></i></a>
+						</div>
+					{% endif %}
+
+					{% if app.user and not is_granted ('ROLE_ADMIN')  %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">Espace Utilisateur</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
+								<li>
+									<a class="dropdown-item text-warning" href="{{ path('app_user_show_dashboard') }}">Mon Tableau de Bord</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_profile') }}">Mon Profil</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_user_show_rdvs') }}">Mes RDVs/Séances</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_user_show_bills') }}">Mes Devis</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_user_show_contacts')}}">Mes Messages</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_user_show_commentaries')}}">Mes Commentaires</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter</a>
+						</li>
+					{% endif %} 
+
+					{% if app.user and is_granted ('ROLE_ADMIN') %} 
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Espace Admin</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item text-warning" href="{{ path('show_dashboard') }}">Tableau de Bord Administrateur</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_disponibility_index') }}">Gestion Disponibilités</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_booking_index') }}">Gestion RDVs</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_choice_index') }}">Gestion Type de RDV</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_user_index') }}">Gestion Utilisateurs</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_bill_index') }}">Gestion Devis</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_contact_index') }}">Gestion Messages</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_commentary_index') }}">Gestion Commentaires</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_category_index') }}">Gestion Catégories de Clients</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_service_index') }}">Gestion Coachings/Accompagnements</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_theme_index') }}">Gestion "Qui suis-je?"</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_coordonate_index') }}">Gestion Contact</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_legal_index') }}">Gestion Mentions légales</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('app_privacy_index') }}">Gestion Politique de confidentialité</a>
+								</li>	
+							</ul>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter</a>
+							</li>
+						</li>
+					{% endif %}
+
+				</ul>
+
+				{% if app.user %}
+					<div class="navbar-user-info">
+						<i class="fa fa-solid fa-cog fa-spin user-session py-2"></i>
+						<span class="user-session">Bonjour {{ app.user.firstname }} {{ app.user.lastname}} | Date du Jour : {{ "now"|date("d/m/Y") }}</span>
+						<br>
+						<a href="https://www.instagram.com/terragaiacoaching/" title="Instagram"><i class="fa fa-brands fa-instagram fa-3x"></i></a>
+                    	<a href="https://www.linkedin.com/in/laurence-debussy-expertrh/" title="Linkedin"><i class=" fa fa-brands fa-linkedin fa-3x"></i></a>
+					</div>
+				{% endif %}
+
+			</div>
+
+		</div>
+
+
+	</div>
+</nav>
+
+<div class="bg-light">
+	{{ render(url('app_render_categories_in_nav')) }}
+</div>

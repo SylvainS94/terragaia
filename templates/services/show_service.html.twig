@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="row">
+
+    <div class="col-12">
+        {% include 'include/_flashes.html.twig' %}
+    </div>
+
+    {% if app.user %}
+        
+        <div class="col-12 my-2 mx-auto">
+            <div class="card-service text-center my-5">
+                <div class="card-header col-12 my-5 rounded">
+                    <h1 class="card-title col-12 my-5">{{ service.title }}</h1>
+                </div>
+                <img class="img-custom-service" src="{{ asset('uploads/') ~ service.picture }}" alt="{{ service.title }}">
+                <div class="card-body my-5 mx-5 col-10">
+                    <h2 class="card-text card-subtitle my-2 col-12">{{ service.subtitle }}</h2>
+                    <p class="card-text col-12">{{ service.content}}</p> 
+                    <h5 class="col-12 text-warning">Prendre un RDV d'Information ou réserver une séance de Coaching</h5>
+                    <a class="nav-link btn-action" href="{{ path('app_user_rdv') }}" title="Prendre un RDV"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 my-2 mx-auto text-center">
+            <div class="card-service my-5">
+                <div class="card-header col-12 my-5 rounded">
+                    <h1 class="my-5 col-10">Déroulement et Modalités du {{ service.title }}</h1>
+                </div>
+            </div>
+            <div class="col-12 my-2 mx-auto text-center">
+                <div class="card-service my-5">
+                    <div class="card-header col-12 my-5 rounded">
+                        <h1 class="my-5 col-10">Déroulement</h1>
+                    </div>
+                    <div class="card-body my-5 mx-5 col-10">
+                        <h2 class="card-subtitle my-2 col-12">Pour les {{ service.target }}, {{ service.progress }}</h2>
+                        <h5 class="card-title my-4 col-12">Etape 1: Fixer le cadre et les objectifs du coaching</h5>
+                        <p class="card-text my-2 col-10 ">Après avoir vérifié préalablement que le coaching pouvait répondre à votre problématique lors un premier échange téléphonique, nous vous proposerons de prendre RDV pour la première séance au cours de laquelle nous définirons de manière précise, les objectifs concrets attendus et les indicateurs de réussite de ce Coaching/Accompagnement.</p>
+                        <p class="card-text my-2 col-10">La qualité de la relation entre le Coach et son/sa Coaché-e est au cœur de la réussite du coaching. Il est donc essentiel de démarrer le coaching sur des bases de confiance où les règles seront explicitement partagées et acceptées et les objectifs à atteindre clairement définis durant cette 1ère séance.</p>
+                        <h5 class="card-title my-4 col-12">Etape 2 : Identifier les traits saillants de sa personalité professionelle pour élargir le champ de ses possibilités</h5>
+                        <p class="card-text my-2 col-10">L'Ennéagramme est une démarche très ancienne, qui conçoit la personnalité dans toute sa complexité y compris existentielle et spirituelle. C'est un outil qui , contrairement aux outils conventionnels de la personnalité, n'enferme pas dans des stéréotypes souvent simplistes.</p>
+                        <p class="card-text my-2 col-10">Inspirée de la psychologie humaniste, l'Ennéagramme intègre une dimension émotionnelle à l'analyse de la personnalité et permet d'accéder à d'autres ressorts de la personnalité.</p>
+                        <p class="card-text my-2 col-10">Outil puissant pour identifier ses fonctionnements automatiques et ses pensées limitantes dans le contexte professionnel, il permet d'élargir son champs d'action en conscience de ses forces et aptitudes naturelles pour atteindre ses objectifs.</p>
+                        <h5 class="card-title my-4 col-12">Etape3 : Mettre en place le processus de changement</h5>
+                        <p class="card-text my-2 col-10">Avec une appréhension plus fine de votre personnalité et de l'écosystème dans lequel vous évoluez, vous serez en mesure d'identifier vos points d'appui et de concevoir la stratégie à mettre en place pour parvenir à vos objectifs.</p>
+                        <p class="card-text my-2 col-10">Par une technique de questionnement, quelquefois "confrontante" et bienveillante.</p>
+                        <p class="card-text my-2 col-10">L'utilisation du recadrage qui permet de sortir de ses schémas de lecture du monde automatiques.</p>
+                        <p class="card-text my-2 col-10">Le travail sur l'estime de soi, l'image de soi.</p>
+                        <p class="card-text my-2 col-10">Le Coach utilise les outils adaptés à son client pour lui permettre de construire le scénario de sa vie professionnelle.</p>
+                        <h5 class="card-title my-4 col-12">Etape 4: Ancrer les acquis et décliner le plan d'action professionnel</h5>
+                        <p class="card-text my-2 col-10">Cette dernière étape permet d'évaluer les résultats de l'accompagnement et de se projeter dans la suite de son parcours.</p>
+                        <p class="card-text my-2 col-10">C'est également une étape importante au plan relationnel où le Coaché et son Coach appréhendent ensemble la fin de ce travail collaboratif et le niveau d'aisance et d'autonomie du Coaché.</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-12 my-2 mx-auto text-center">
+                <div class="card-service my-5">
+                    <div class="card-header col-12 my-5 rounded">
+                        <h1 class="my-5 col-10">Modalités :</h1>
+                    </div>
+                    <div class="card-body mx-5 my-5 col-10">
+                        <h2 class="card-subtitle my-2 col-12">Pour les {{ service.target }}, {{ service.progress }}</h2>
+                        <h4 class="card-title my-4 col-12">Séances à distance, ou en présentiel, Seine et Marne ou Paris.</h4>
+                        <h5 class="card-text my-4 col-12">La qualité et l'efficacité du Coaching professionnel ne sont pas amoindries par l'échange distanciel. Celui-ci peut vous permettre plus de flexibilité si votre agenda est très contraint grâce aux séances en visioconférence ou par téléphone.</h5>
+                        <p class="card-text my-2 col-10">Nombre de séances proposées : entre {{ service.sessionmin }} à {{ service.sessionmax }} séances en moyenne, selon la complexité du problème à traiter.</p>
+                        <p class="card-text my-2 col-10">Durée d'une séance de Coaching : {{ service.duration }} heure</p>
+                        <p class="card-text my-2 col-10">Rythme des séances : {{ service.rythm }}</p>
+                        <p class="card-text my-2 col-10">{{ service.price }}</p>
+                        <p class="card-text my-2 col-10">Modalités spécifiques : {{ service.modality }}</p>
+                        <h6 class="card-text my-4 col-12">Pour plus d'informations me consulter, par email, téléphone ou messagerie sur ce site internet</h6>
+                        <h5 class="text-warning my-4 col-12">Envoyer un message</h5>
+                        <a class="nav-link btn-action" href="{{ path('app_new_contact') }}" title="Envoyer un message"><i class="fa fa-message fa-flip mx-2"></i> Envoyer un Message</a>
+                    </div>
+                </div>  
+            </div>
+            
+            <div class="col-10 my-4 mx-auto align-center mt-2 mb-2">
+                <div class="text-center col-5 text-warning">
+                    <h5>Envoyer un Commentaire</h5>
+                </div>
+                <div <div class="text-center col-10">
+                    <a class="nav-link btn-action" href="{{ path('app_add_commentary', {'category_title':service.category.title, 'service_title': service.title, 'id': service.id}) }}" class="btn-warning" title="Envoyer un commentaire"><i class="fa fa-comment fa-flip"></i> Envoyer un Commentaire</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+            
+            <div class="col-12 my-2 mx-auto">
+                <div class="card-service text-center my-5">
+                    <div class="card-header col-12 my-5 rounded">
+                        <h1 class="card-title col-12 my-5">{{ service.title }}</h1>
+                    </div>
+                    <img class="img-custom-service" src="{{ asset('uploads/') ~ service.picture }}" alt="{{ service.title }}">
+                    <div class="card-body my-5 mx-5 col-10">
+                        <h4 class="card-text card-subtitle my-2 col-12">{{ service.subtitle }}</h4>
+                        <p class="card-text col-12">{{ service.content}}</p>
+                        <h5 class="col-12 text-warning">Pour prendre un RDV d'Information ou réserver une séance de Coaching, veuillez vous connecter</h5>  
+                        <a class="nav-link btn-action my-2" href="{{ path('app_login') }}" title="Se connecter"><i class="fa fa-user fa-flip mx-2"></i> Se Connecter</a>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="col-12 my-2 mx-auto text-center">
+                <div class="card-service my-5">
+                    <div class="card-header col-12 my-5 rounded">
+                        <h1 class="my-5 col-10">Déroulement et modalités du {{ service.title }}</h1>
+                    </div>
+                </div>
+                <div class="col-12 my-2 mx-auto text-center">
+                    <div class="card-service my-5">
+                        <div class="card-header col-12 my-5 rounded">
+                            <h1 class="my-5 col-10">Déroulement</h1>
+                        </div>
+                        <div class="card-body my-5 mx-5 col-10">
+                            <h2 class="card-subtitle my-2 col-12">Pour les {{ service.target }}, {{ service.progress }}</h2>
+                            <h5 class="card-title my-4 col-12">Etape 1: Fixer le cadre et les objectifs du coaching</h5>
+                            <p class="card-text my-2 col-10 ">Après avoir vérifié préalablement que le coaching pouvait répondre à votre problématique lors un premier échange téléphonique, nous vous proposerons de prendre RDV pour la première séance au cours de laquelle nous définirons de manière précise, les objectifs concrets attendus et les indicateurs de réussite de ce Coaching.</p>
+                            <p class="card-text my-2 col-10">La qualité de la relation entre le Coach et son/sa Coaché-e est au cœur de la réussite du coaching. Il est donc essentiel de démarrer le coaching sur des bases de confiance où les règles seront explicitement partagées et acceptées et les objectifs à atteindre clairement définis durant cette 1ère séance.</p>
+                            <h5 class="card-title my-4 col-12">Etape 2: Identifier les traits saillants de sa personnalité professionnelle pour élargir le champ de ses possibilités</h5>
+                            <p class="card-text my-2 col-10">L'Ennéagramme est une démarche très ancienne, qui conçoit la personnalité dans toute sa complexité y compris existentielle et spirituelle. C'est un outil qui , contrairement aux outils conventionnels de la personnalité, n'enferme pas dans des stéréotypes souvent simplistes.</p>
+                            <p class="card-text my-2 col-10">Inspirée de la psychologie humaniste, l'Ennéagramme intègre une dimension émotionnelle à l'analyse de la personnalité et permet d'accéder à d'autres ressorts de la personnalité.</p>
+                            <p class="card-text my-2 col-10">Outil puissant pour identifier ses fonctionnements automatiques et ses pensées limitantes dans le contexte professionnel, il permet d'élargir son champs d'action en conscience de ses forces et aptitudes naturelles pour atteindre ses objectifs.</p>
+                            <h5 class="card-title my-4 col-12">Etape 3: Mettre en place le processus de changement</h5>
+                            <p class="card-text my-2 col-10">Avec une appréhension plus fine de votre personnalité et de l'écosystème dans lequel vous évoluez, vous serez en mesure d'identifier vos points d'appui et de concevoir la stratégie à mettre en place pour parvenir à vos objectifs.</p>
+                            <p class="card-text my-2 col-10">Par une technique de questionnement, quelquefois "confrontante" et bienveillante.</p>
+                            <p class="card-text my-2 col-10">L'utilisation du recadrage qui permet de sortir de ses schémas de lecture du monde automatiques.</p>
+                            <p class="card-text my-2 col-10">Le travail sur l'estime de soi, l'image de soi.</p>
+                            <p class="card-text my-2 col-10">Le Coach utilise les outils adaptés à son client pour lui permettre de construire le scénario de sa vie professionnelle.</p>
+                            <h5 class="card-title my-4 col-12">Etape 4: Ancrer les acquis et décliner le plan d'action professionnel</h5>
+                            <p class="card-text my-2 col-10">Cette dernière étape permet d'évaluer les résultats de l'accompagnement et de se projeter dans la suite de son parcours.</p>
+                            <p class="card-text my-2 col-10">C'est également une étape importante au plan relationnel où le Coaché et son Coach appréhendent ensemble la fin de ce travail collaboratif et le niveau d'aisance et d'autonomie du Coaché.</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-12 my-2 mx-auto text-center">
+                    <div class="card-service my-5">
+                        <div class="card-header col-12 my-5 rounded">
+                            <h1 class="my-5 col-10">Modalités :</h1>
+                        </div>
+                        <div class="card-body mx-5 my-5 col-10">
+                            <h2 class="card-subtitle my-2 col-12">Pour les {{ service.target }}, {{ service.progress }}</h2>
+                            <h4 class="card-title my-4 col-12">Séances à distance, ou en présentiel, Seine et Marne ou Paris.</h4>
+                            <h5 class="card-text my-4 col-12">La qualité et l'efficacité du Coaching professionnel ne sont pas amoindries par l'échange distanciel. Celui-ci peut vous permettre plus de flexibilité si votre agenda est très contraint grâce aux séances en visioconférence ou par téléphone.</h5>
+                            <p class="card-text my-2 col-10">Nombre de séances proposées : entre {{ service.sessionmin }} à {{ service.sessionmax }} séances en moyenne, selon la complexité du problème à traiter.</p>
+                            <p class="card-text my-2 col-10">Durée d'une séance de Coaching : {{ service.duration }} heure</p>
+                            <p class="card-text my-2 col-10">Rythme des séances : {{ service.rythm }}</p>
+                            <p class="card-text my-2 col-10">{{ service.price }}</p>
+                            <p class="card-text my-2 col-10">Modalités spécifiques : {{ service.modality }}</p>
+                            <h6 class="card-text my-4 col-12">Pour plus d'informations me consulter, par email, téléphone ou messagerie sur ce site internet</h6>
+                            <h5 class="text-warning my-4 col-12">Pour envoyer un message, ou un commentaire veuillez vous connecter</h5>
+                            <a class="nav-link btn-action" href="{{ path('app_login') }}" title="Se connecter"><i class="fa fa-user fa-flip mx-2"></i> Se Connecter</a>      
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+    {% endif %} 
+
+    <hr>
+    <div class="card-service my-5">
+        <div class="card-header col-12 my-5 rounded">
+            <h1 class="my-4 col-10">Espace Commentaires</h1>
+        </div>
+        
+        {% if commentaries is not null %}
+            <div class="col-10 my-2">
+                {% for commentary in commentaries %}
+                    {% if commentary.deletedAt is null %}
+    
+                        <div class="bg-light shadow my-2 col-12 rounded">
+                            <h5 class="ps-3 text-muted">Crée le: {{ commentary.createdAt | date('d/m/Y | H:i') }} | Écrit par : {{ commentary.author ? commentary.author.firstname ~ '.' ~ commentary.author.lastname|slice(0,1) : "Pas d'auteur" }}</h5>
+                            <h5 class="ps-3 comment ">"{{ commentary.comment }}"</h5>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+    </div>
+        {% endif %}
+
+</div> 
+
+{% endblock %}

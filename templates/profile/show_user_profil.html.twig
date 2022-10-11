@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <h1>Mon Profil</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Identité</th>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie de Coaching ou d'Accompagnement</th>
+                <td>{{ user.category }}</td>
+            </tr>
+            <tr>
+                <th>Coaching ou Accompagnement</th>
+                <td>{{ user.service }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Société, Entreprise, Association..</th>
+                <td>{{ user.society }}</td>
+            </tr>
+            <tr>
+                <th>Métier</th>
+                <td>{{ user.job }}</td>
+            </tr>
+            <tr>
+                <th>Objet demande</th>
+                <td>{{ app.user.getAskObject() }}</td>
+            </tr>    
+            <tr>
+                <th>N°Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifié le</th>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_profile', {'id': app.user.id}) }}" class="btn btn-view" title="Retour vers mon Profil"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+    <hr>
+    <div class="text-center mx-auto">
+        <p class=" col-12"><a href="{{ path('app_update_user', {'id': app.user.id}) }}"class="btn btn-warning" title="Modifier mon Profil"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a></p>
+    </div>
+    <hr>
+    <div class="col -12 text-center mx-auto">
+        <form method="post" action="{{ path('app_delete_user', {'id': app.user.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer définitivement votre Compte ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+        <button class="btn btn-danger"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+    </div>
+    <hr>
+{% endblock %}

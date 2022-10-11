@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Devis Clients{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Devis Clients</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>N°Id</th>
+                <th>Créé le</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bill in bills %}
+            <tr>
+                <td>{{ bill.user.firstname}}</td>
+                <td>{{ bill.user.lastname}}</td>
+                <td>{{ bill.content }}</td>
+                <td>{{ bill.id }}</td>
+                <td>{{ bill.createdAt ? bill.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bill.updatedAt ? bill.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href= "{{ asset ('uploads/') ~ bill.content }}" alt="{{ bill.id }}"class="btn btn-info" title="Voir mon devis" target="_blank"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_bill_show', {'id': bill.id}) }}" class="btn btn-info" title="Détails de mon devis"><i class="fa fa-info fa-beat mx-2"></i>Détails</a>
+                    <a href= "{{ asset ('uploads/') ~ bill.content }}" download class="btn btn-warning" title="Télécharger mon devis"><i class="fa fa-download fa-flip mx-2"></i>Télécharger</a>
+                    <a href="{{ path('app_bill_edit', {'id': bill.id}) }}" class="btn btn-warning" title="Modifier le Devis"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_bill_delete', {'id': bill.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer ce Devis définitivement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ bill.id) }}">
+                        <button class="btn btn-danger" title="Supprimer le Devis"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun Devis trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer un nouveau Devis</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_bill_new') }}" class="btn btn-view mt-2" title="Créer un nouveau Devis"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+
+{% endblock %}

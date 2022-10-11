@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'include/_flashes.html.twig' %}
+   
+        {% for privacy in privacies %}
+
+            <div class="row">
+                <div class="col-10 my-4 mx-auto text-center">
+                    <div class="card-service">
+                        <div class="card-header col-12">
+                            <h1 class="card-title text-center mb-5 col-12">Déclaration relative à la Réglementation Générale de Protection des Données</h1>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-text my-4 col-10 mx-auto">Le responsable du traitement des données est : {{ privacy.firstname }} {{ privacy.lastname }}</h4>
+                            <p class="card-text my-4 col-10 mx-auto">Addresse Postale : {{ privacy.adress }}</p>
+                            <p class="card-text my-4 col-10 mx-auto">Adresse e-mail : {{ privacy.email }}</p>
+                            <p class="card-text my-4 col-10 mx-auto">Numéro de téléphone : {{ privacy.phone }}</p>
+                            <br>
+                            <h4 class="card-text text-center mb-5 col-8">Nous nous réjouissons de l’intérêt que vous portez à notre site internet. La protection de votre vie privée nous tient très à cœur. Ci-dessous, nous vous informons en détail sur le traitement de vos données.</h4>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">1. Données d'accès et hébergement</h3> 
+                            <p class="card-text my-4 col-10 mx-auto"> {{ privacy.access}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">2. Traitement de données aux fins d'une prise de contact et de communication avec les clients</h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.process}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">3. Cookies et autres technologies</h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.cookie}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">4. Utilisation de cookies et autres technologies à des fins publicitaires et d'analyse web</h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.analytic}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">5. Réseaux sociaux </h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.network}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">6. Possibilités de contact et vos droits</h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.law}}</p>
+                            <br>
+                            <h3 class="card-text my-4 col-10 mx-auto">Droit d’opposition </h3>
+                            <p class="card-text my-4 col-10 mx-auto"> : {{ privacy.possibility}}</p>
+                            <br>
+                            <h5 class="card-text my-4 col-10 mx-auto">De plus, vous disposez d’un droit de recours auprès de l’autorité de surveillance compétente en matière de protection des données en France: Commission Nationale de l'Informatique et des Libertés, CNIL - 3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07 - Téléphone : 01 53 73 22 22</h5>
+                            <br>
+                            <h5 class="card-text my-4 col-10 mx-auto">Pour toute question relative à la collecte, au traitement ou à l'utilisation de vos données personnelles, pour toute demande de renseignements, de correction, de limitation ou d'effacement de données ainsi que pour tout retrait des accords donnés ou toute opposition à une utilisation particulière des données, veuillez-vous adresser directement à nos services par le biais des coordonnées indiquées dans les Mentions légales.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        {% endfor %}
+
+{% endblock %}

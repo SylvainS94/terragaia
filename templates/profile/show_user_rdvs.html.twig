@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Mes RDVs et Séances de Coachings/Accompagnements</h1>
+
+    <div class="row mt-3">
+        {% include 'include/_flashes.html.twig' %}
+    </div>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5>Total des RDVs et Séances de Coachings/Accompagnements créés : {{ total }}</h5> 
+        </div> 
+    </div>
+
+    <div class="row mx-auto">
+        <div class="col-10 mt-4">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Type de RDV</th>
+                        <th>Type de Coaching/Accompagnement choisi pour le RDV</th>
+                        <th>Date et Heure du RDV</th>
+                        <th>Message d'Information</th>
+                        <th>Votre Identité (Profil)</th>
+                        <th>N°Id</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% if bookings is not empty %}
+
+                        {% for booking in bookings %}
+
+                            <tr>
+                                <td>{{ booking.choices.title }}</td>
+                                <td>{{ booking.services.title }}</td>
+                                <td>Le {{ booking.disponibility.dateSlot }} à {{booking.disponibility.hourslot.format('H:i')}} Heure</td>
+                                <td>{{ booking.message | length > 80 ? booking.message|slice(0,80) ~ '...' : booking.message }}</td>
+                                <td>{{ booking.user.firstname}} {{ booking.user.lastname}}</td>
+                                <td>{{ booking.disponibility.id }}</td>
+                                <td>
+                                    <a href="{{ path('app_user_show_rdv', {'id': booking.id}) }}" class="btn btn-info" title="Voir mon message"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                    {% endif %} 
+
+                </tbody> 
+
+            </table> 
+
+        </div>
+
+        <hr>
+        <div class="text-center mx-auto my-2">
+            <h6 class=" text-warning col-12 my-2">Prendre un nouveau RDV d'Information ou réserver une nouvelle Séance de Coaching/Accompagnement</h6>
+            <a class="nav-link btn-action card-btn-rdv my-2" href="{{ path('app_user_rdv') }}" title="Prendre un RDV ou Réserver une séance de Coaching"><i class="fa fa-calendar-day fa-flip mx-2"></i>Prendre RDV</a>
+        </div>
+
+    </div>
+    <hr>
+
+    </div>
+
+{% endblock %}
+

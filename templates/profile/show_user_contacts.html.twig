@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Mes Messages</h1>
+
+    <div class="row mt-3">
+        {% include 'include/_flashes.html.twig' %}
+    </div>
+    <div class="row">
+        <div class="card-dashboard col-6">
+            <h5>Total des messages créés : {{ total }}</h5> 
+        </div> 
+    </div>
+
+    <div class="row mx-auto">
+        <div class="col-10 mt-4">
+
+            <h3>Messages</h3>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Message</th>
+                        <th>N°Id</th>
+                        <th>Créé le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% set countIn = 0 %}
+
+                    {% if contacts is not empty %}
+
+                        {% for contact in contacts %}
+                            {% if contact.createdAt is not null %}
+                                {%  set countIn = countIn + 1 %}
+
+                                <tr>
+                                    <td>{{ contact.title }}</td>
+                                    <td>{{ contact.message | length > 80 ? contact.message|slice(0,80) ~ '...' : contact.message }}</td>
+                                    <td>{{ contact.id }}</td>
+                                    <td>{{ contact.createdAt | date('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ path('app_user_show_contact', {'id': contact.id}) }}" class="btn btn-info" title="Voir mon message"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                                        <a href="{{ path('app_user_update_contact', {'id': contact.id}) }}" class="btn btn-warning" title="Modifier mon message"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                                        <a href="{{ path('app_user_delete_contact', {'id': contact.id}) }}" class="btn btn-danger" title="Supprimer mon message"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</a>
+                                    </td>
+                                </tr>
+
+                            {% endif %}
+                        {% endfor %}
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+            <p>Total : {{ countIn }}</p>
+        </div>
+
+        
+        <hr>
+            <div class="text-center mx-auto my-2">
+                    <h6 class=" text-warning col-12 my-2">Envoyer un nouveau Message</h6>
+                    <a class="nav-link btn-action my-2" href="{{ path('app_new_contact') }}" title="Envoyer un Message"><i class="fa fa-calendar-day fa-flip mx-2"></i>Envoyer</a>
+                </div>
+            </div>
+        <hr>
+
+
+
+    </div>
+
+
+
+{% endblock %}
+

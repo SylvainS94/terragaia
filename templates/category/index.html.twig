@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Catégories de Clients{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Catégories de Clients</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Image</th>
+                <th>Actions</th>
+                <th>N°Id</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.title }}</td>
+                <td>{{ category.content | length > 80 ? category.content|slice(0,80) ~ '...' : category.content}}</td>
+                <td>{{ category.picture }}</td>
+                <td>{{ category.id }}</td>
+                <td>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-info mt-2" title="Voir la Catégorie de Clients"><i class="fa fa-magnifying-glass fa-beat mx-2"></i>Voir</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning mt-2" title="Modifier la Catégorie de Clients"><i class="fa fa-edit fa-beat mx-2"></i>Modifier</a>
+                    <form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer cette Catégorie de Clients définitivement ? *Les Services liés ne seront pas supprimés');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                        <button class="btn btn-danger" title="Supprimer la Catégorie de Clients"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune Catégorie de Coachings/Accompagnements trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <h5 class="col-12">Créer une nouvelle Catégorie de Coachings/Accompagnements</h5>
+        <div class="text-center mx-auto my-2">
+            <p class="col-12"><a href="{{ path('app_category_new') }}" class="btn btn-view mt-2" title="Créer une nouvelle Catégorie de Coachings/Accompagnements"><i class="fa fa-edit fa-flip mx-2"></i>Créer</a></p>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

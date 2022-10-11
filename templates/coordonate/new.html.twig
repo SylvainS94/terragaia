@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer nouvelles Coordonnées de Contact{% endblock %}
+
+{% block body %}
+    <h1>Créer nouvelles Coordonnées de Contact</h1>
+    <hr>
+    {{ include('coordonate/_form.html.twig') }}
+    <hr>
+    <br>
+    <div class="text-center mx-auto my-2">
+        <p class="col-12"><a href="{{ path('app_coordonate_index') }}" class="btn btn-view" title="Retour vers Liste"><i class="fa-solid fa-circle-arrow-left fa-beat mx-2"></i>Retour</a></p>
+    </div>
+{% endblock %}

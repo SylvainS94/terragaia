@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Disponibilités{% endblock %}
+
+{% block body %}
+
+    <h3 class="text-center my-2 col-10">Voici mes disponibilités pour ce jour, choisissez l'horaire du début du RDV ou de la séance qui vous convient puis cliquez sur le bouton "Valider" :</h3>
+    <h4 class="text-warning text-center my-5 col-10">Rappel : Tous les RDVs ou séances de Coaching durent 1h30</h4>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Jour du RDV</th>
+      <th scope="col">Heure du début du RDV</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for slot in slots %}
+      <tr>
+      <td>{{ slot.dateSlot }}</td>
+      <td>{{ slot.hourSlot.format('H:i') }}</td>
+      <td><a class="nav-link btn-action" href="{{ path('app_user_reservation', {'id': slot.id}) }}" title="Valider cette date"><i class="fa fa-calendar-day fa-flip mx-2"></i>Valider</a></td>
+    </tr>
+  {% endfor %}
+    
+  </tbody>
+</table>
+{% endblock %}

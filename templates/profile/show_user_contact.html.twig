@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Message{% endblock %}
+
+{% block body %}
+    <h1>Mon Message</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ contact.title }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ contact.message }}</td>
+            </tr>
+            <tr>
+                <th>N°Id</th>
+                <td>{{ contact.id }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifié le</th>
+                <td>{{ contact.updatedAt ? contact.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <hr>
+    <div class="text-center mx-auto my-2">
+        <a href="{{ path('app_user_show_contacts', {'id': contact.id}) }}" class="btn btn-view" title="Retour Liste"><i class="fa-solid fa-circle-arrow-left mx-2 fa-beat"></i>Retour</a>
+    </div>
+    <hr>
+    <div class="text-center mx-auto my-2">
+       <a href="{{ path('app_user_update_contact', {'id': contact.id}) }}" class="btn btn-warning" title="Modifier mon message"><i class="fa fa-edit"></i>Modifier</a>
+    </div>
+    <hr>
+         <div class="col -12 text-center mx-auto">
+        <form method="post" action="{{ path('app_user_delete_contact', {'id': contact.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer définitivement ce Message ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+            <button class="btn btn-danger"><i class="fa fa-trash fa-beat mx-2"></i>Supprimer</button>
+        </form>
+    </div>
+    <hr>
+
+{% endblock %}

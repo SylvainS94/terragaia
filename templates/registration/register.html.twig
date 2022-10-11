@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   
+    <div class="row">
+    
+        <div class="col-6 mx-auto">
+        
+            {{ form_start(registrationForm) }}
+
+            <div class="row">
+             <h1 class="text-center mx-auto my-4">Inscription "Gratuite"</h1>
+                <div class="col-6">
+                    {{ form_row(registrationForm.firstname) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(registrationForm.lastname) }}
+                </div>
+             </div>
+            
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.password, {label: 'Password*'}) }}
+                {{ form_row(registrationForm.phone) }}
+                {{ form_row(registrationForm.ask_object) }}
+                {{ form_row(registrationForm.society) }}
+                {{ form_row(registrationForm.job) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+    
+    {{ form_end(registrationForm) }}
+
+    <p class="text-warning">* Obligatoire</p>
+    <a class="text-info" href="{{ path('app_privacies') }}">** Politique de confidentialité</a>
+    
+        </div>
+    </div>
+
+{% endblock %}

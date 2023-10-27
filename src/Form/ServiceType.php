@@ -24,7 +24,7 @@ class ServiceType extends AbstractType
              ->add('category', EntityType::class, [
                  'class' => Category::class,
                 'choice_label' => 'title',
-                'label' => 'Choisissez une catégorie de Clients'
+                'label' => 'Choisissez une catégorie de Coaching'
         ])
             ->add('title', TextType::class, [
                 'label' => 'Titre du Coaching/Accompagnement',

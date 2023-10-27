@@ -4,7 +4,7 @@
 
     <div class="card-service text-center my-5">
         <div class="card-header rounded col-12">
-            <h1 class="card-title col-10 my-5">Qui suis-je ?</h4>
+            <h1 class="card-title col-10 my-5">Qui suis-je ?</h1>
         </div>
         <div class="card-body card-text col-10 my-5 mx-5">
             <h2 class="card-subtitle card-text col-12 my-2">Parcours, Formation et Diplômes</h2>
@@ -16,43 +16,65 @@
    
         {% for theme in themes %}
 
-          {% if app.user %}
+            {% if not app.user %}
 
-            <div class="row">
-                <div class="col-12 my-2 mx-auto">
-                    <div class="card-service text-center my-5">
-                        <div class="card-header col-12 my-5">
+                <div class="row">
+                    <div class="col-12 my-2 mx-auto">
+                        <div class="card-service text-center my-5">
+                            <div class="card-header col-12 my-5">
                             <h1 class="card-title my-5 col-12">{{ theme.title }}</h1>
-                        </div>
-                        <img class="img-custom-service" src="{{ asset('uploads/') ~ theme.picture }}" alt="{{ theme.title }}">
-                        <div class="card-body col-10 my-5 mx-5">
-                            <h2 class=" card-subtitle my-2 col-10">{{ theme.subtitle }}</h2>
-                            <p class="card-text col-10 my-5">{{ theme.content | raw }}</p>
-                            <a class="nav-link btn-action" href="{{ path('app_user_rdv')  }}" title="Prendre un RDV"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
-                            <a class="nav-link btn-action" href="{{ path('app_new_contact') }}" title="Envoyer un Message"><i class="fa fa-message fa-flip mx-2"></i> Envoyer un Message</a> 
+                            </div>
+                            <img class="img-custom-service" src="{{ asset('uploads/') ~ theme.picture }}" alt="{{ theme.title }}">
+                            <div class="card-body col-10 my-5 mx-5">
+                                <h2 class=" card-subtitle my-2 col-10">{{ theme.subtitle }}</h2>
+                                <p class="card-text col-10 my-5">{{ theme.content | raw }}</p>
+                                <p class="text-warning card-text col-10 my-4">Pour prendre RDV avec le coach ou lui envoyer un message, veuillez vous connecter svp</p>
+                                <a class="nav-link btn-action" href="{{ path('app_login') }}" title="Se Connecter"><i class="fa fa-user fa-flip mx-2"></i>Se connecter</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-           {% else %}
+            {% endif %}
 
-            <div class="row">
-                <div class="col-12 my-2 mx-auto">
-                    <div class="card-service text-center my-5">
-                        <div class="card-header col-12 my-5">
-                            <h1 class="card-title my-5 col-12">{{ theme.title }}</h1>
-                        </div>
-                        <img class="img-custom-service" src="{{ asset('uploads/') ~ theme.picture }}" alt="{{ theme.title }}">
-                        <div class="card-body col-10 my-5 mx-5">
-                            <h2 class=" card-subtitle my-2 col-10">{{ theme.subtitle }}</h2>
-                            <p class="card-text col-10 my-5">{{ theme.content | raw }}</p>
-                            <p class="text-warning card-text col-10 my-4">Pour prendre RDV ou envoyer un message, veuillez vous connecter</p>
-                            <a class="nav-link btn-action" href="{{ path('app_login') }}" title="Se Connecter"><i class="fa fa-user fa-flip mx-2"></i>Se Connecter</a>
+            {% if app.user and not is_granted ('ROLE_ADMIN') %}
+
+                <div class="row">
+                    <div class="col-12 my-2 mx-auto">
+                        <div class="card-service text-center my-5">
+                            <div class="card-header col-12 my-5">
+                                <h1 class="card-title my-5 col-12">{{ theme.title }}</h1>
+                            </div>
+                            <img class="img-custom-service" src="{{ asset('uploads/') ~ theme.picture }}" alt="{{ theme.title }}">
+                            <div class="card-body col-10 my-5 mx-5">
+                                <h2 class=" card-subtitle my-2 col-10">{{ theme.subtitle }}</h2>
+                                <p class="card-text col-10 my-5">{{ theme.content | raw }}</p>
+                                <a class="nav-link btn-action" href="{{ path('app_user_rdv')  }}" title="Prendre un RDV avec le coach"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
+                             <a class="nav-link btn-action" href="{{ path('app_new_contact') }}" title="Envoyer un Message au coach"><i class="fa fa-message fa-flip mx-2"></i> Envoyer un message</a> 
+                            </div>
                         </div>
                     </div>
-                </div>
 
-          {% endif %}
+            {% endif %}
+
+             {% if app.user and is_granted ('ROLE_ADMIN') %}
+
+                <div class="row">
+                    <div class="col-12 my-2 mx-auto">
+                        <div class="card-service text-center my-5">
+                            <div class="card-header col-12 my-5">
+                                <h1 class="card-title my-5 col-12">{{ theme.title }}</h1>
+                            </div>
+                            <img class="img-custom-service" src="{{ asset('uploads/') ~ theme.picture }}" alt="{{ theme.title }}">
+                            <div class="card-body col-10 my-5 mx-5">
+                                <h2 class=" card-subtitle my-2 col-10">{{ theme.subtitle }}</h2>
+                                <p class="card-text col-10 my-5">{{ theme.content | raw }}</p>
+                                <a class="nav-link btn-action" href="{{ path('app_admin_rdvs')  }}" title="Prendre un RDV avec un client"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
+                             <a class="nav-link btn-action" href="{{ path('app_contact_new') }}" title="Envoyer un Message à un client"><i class="fa fa-message fa-flip mx-2"></i> Envoyer un message</a> 
+                            </div>
+                        </div>
+                    </div>
+
+            {% endif %}
 
 </div>
         

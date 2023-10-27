@@ -25,7 +25,7 @@ class Choice
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="choices", nullable=true)
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="choices")
      */
     private $bookings;
 

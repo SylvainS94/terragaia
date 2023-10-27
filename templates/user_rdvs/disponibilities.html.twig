@@ -16,7 +16,7 @@
       <tr>
       <td>{{ slot.dateSlot }}</td>
       <td>{{ slot.hourSlot.format('H:i') }}</td>
-      <td><a href="{{ path('app_booking_new', {'id': slot.id}) }}">Valider</a></td>
+      <td><a href="{{ path('app_booking_new', {'id': slot.id}) }}" class="btn btn-view">Valider</a></td>
     </tr>
   {% endfor %}
     

@@ -4,11 +4,11 @@
     
     <div class="card-service text-center my-5">
         <div class="card-header rounded col-12">
-            <h1 class="card-title col-10 my-5">Contact</h4>
+            <h1 class="card-title col-10 my-5">Contact</h1>
         </div>
         <div class="card-body card-text col-10 my-5 mx-5">
             <h2 class="card-subtitle card-text col-12 my-2">Téléphone, E-mail, Messagerie*</h2>
-            <h5 class="card-text text-warning col-12 my-2">* Messagerie: Nous pouvons échanger par messages directement sur ce site internet. Pour ce faire, veuillez vous connecter, puis cliquer sur "Envoyer un Message"</h5>
+            <h5 class="card-text text-warning col-12 my-2">* Messagerie: Nous pouvons échanger par messages directement sur ce site internet. Pour ce faire, veuillez vous connecter, puis cliquer sur "Envoyer un message"</h5>
         </div>
     </div>
 
@@ -16,38 +16,54 @@
    
         {% for coordonate in coordonates %}
 
-          {% if app.user %}
-
-            <div class="row">
-                <div class="my-4 mx-auto text-center">
-                    <div class="card-service">
-                        <div class="card-body mx-5 my-5">
-                            <h3 class="card-text my-4 col-10">Téléphone : {{ coordonate.phone}}</h3>
-                            <h3 class="card-text my-4 col-10">E-mail : {{ coordonate.email}}</h3> 
-                            <h3 class=" text-warning card-text col-10">Envoyer un Message</h3>
-                            <a class="nav-link btn-action my-2" href="{{ path('app_new_contact') }}"><i class="fa fa-message fa-flip mx-2"></i>Envoyer un Message</a>
-                        </div>
-                    </div>
-                </div>
-
-           {% else %}
+            {% if not app.user %}   
 
                 <div class="row">
-                <div class="my-4 mx-auto text-center">
-                    <div class="card-service">
-                        <div class="card-body mx-5 my-5">
-                            <h3 class="card-text my-4 col-10">Téléphone : {{ coordonate.phone}}</h3>
-                            <h3 class="card-text my-4 col-10">E-mail : {{ coordonate.email}}</h3>
-                            <h3 class="card-text col-10 my-4">Messagerie :</h3>
-                            <h4 class="text-warning card-text col-10">Pour envoyer un message, veuillez vous connecter</h4>
-                            <a class="nav-link btn-action my-2" href="{{ path('app_login') }}"><i class="fa fa-user fa-flip mx-2"></i>Se Connecter</a>
+                    <div class="my-4 mx-auto text-center">
+                        <div class="card-service">
+                            <div class="card-body mx-5 my-5">
+                                <h3 class="card-text my-4 col-10">Téléphone : {{ coordonate.phone}}</h3>
+                                <h3 class="card-text my-4 col-10">E-mail : {{ coordonate.email}}</h3>
+                                <h3 class="card-text col-10 my-4">Messagerie :</h3>
+                                <h4 class="text-warning card-text col-10">Pour envoyer un message, veuillez vous connecter svp</h4>
+                                <a class="nav-link btn-action my-2" href="{{ path('app_login') }}"><i class="fa fa-user fa-flip mx-2"></i>Se connecter</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-          {% endif %}
+            {% endif %}
 
-            </div>
+            {% if app.user and not is_granted ('ROLE_ADMIN') %}
+
+                <div class="row">
+                    <div class="my-4 mx-auto text-center">
+                        <div class="card-service">
+                            <div class="card-body mx-5 my-5">
+                                <h3 class="card-text my-4 col-10">Téléphone : {{ coordonate.phone}}</h3>
+                                <h3 class="card-text my-4 col-10">E-mail : {{ coordonate.email}}</h3> 
+                                <h3 class=" text-warning card-text col-10">Envoyer un message au coach</h3>
+                                <a class="nav-link btn-action my-2" href="{{ path('app_new_contact') }}" title="Envoyer un message au coach"><i class="fa fa-message fa-flip mx-2"></i>Envoyer un message</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endif %}
+
+            {% if app.user and is_granted ('ROLE_ADMIN') %}
+
+                <div class="row">
+                    <div class="my-4 mx-auto text-center">
+                        <div class="card-service">
+                            <div class="card-body mx-5 my-5">
+                                <h3 class="card-text my-4 col-10">Téléphone : {{ coordonate.phone}}</h3>
+                                <h3 class="card-text my-4 col-10">E-mail : {{ coordonate.email}}</h3> 
+                                <h3 class=" text-warning card-text col-10">Envoyer un message à un client</h3>
+                                <a class="nav-link btn-action my-2" href="{{ path('app_contact_new') }}" title="Envoyer un Message à un client"><i class="fa fa-message fa-flip mx-2"></i>Envoyer un message</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endif %}
+
+</div>
         
         {% endfor %}
 

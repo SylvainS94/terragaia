@@ -59,7 +59,7 @@ class UserRdvController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $booking->setUser($user);
             $booking->setDisponibility($disponibility);
-
+            
             $manager->persist($booking);
 
             $disponibility->setDispo(true);

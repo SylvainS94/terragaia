@@ -18,8 +18,8 @@ class BookingType extends AbstractType
         $builder
             ->add('choices', EntityType::class, [
                 'class' => Choice::class,
-               'choice_label' => 'title',
-               'label' => 'Choisissez un type de RDV/Séance'
+                'choice_label' => 'title',
+                'label' => 'Choisissez un type de RDV/Séance'
             ])
             ->add('services', EntityType::class, [
                 'class' => Service::class,

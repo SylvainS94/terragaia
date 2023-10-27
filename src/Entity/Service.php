@@ -47,7 +47,7 @@ class Service
     private $content;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $price;
 

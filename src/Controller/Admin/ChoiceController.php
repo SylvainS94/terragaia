@@ -60,7 +60,7 @@ class ChoiceController extends AbstractController
      */
     public function edit(Request $request, Choice $choice, ChoiceRepository $choiceRepository): Response
     {
-        $form = $this->createForm(ChoiceType::class, $choice);
+        $form = $this->createForm(ChoiceFormType::class, $choice);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

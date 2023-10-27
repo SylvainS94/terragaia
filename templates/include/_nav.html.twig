@@ -15,7 +15,7 @@
 						<a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 					</li>
 					<li>
-						<a class="nav-link" href="{{ path('app_themes') }}">Qui suis-je?</a>
+						<a class="nav-link" href="{{ path('app_themes') }}">Qui suis-je ?</a>
 					</li>
 					<li>
 						<a class="nav-link" href="{{ path('app_coordonates') }}">Contact</a>
@@ -31,7 +31,7 @@
 						</div>
 					{% endif %}
 
-					{% if app.user and not is_granted ('ROLE_ADMIN')  %}
+					{% if app.user and not is_granted ('ROLE_ADMIN') %}
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">Espace Utilisateur</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
@@ -45,7 +45,7 @@
 									<a class="dropdown-item" href="{{ path('app_user_show_rdvs') }}">Mes RDVs/Séances</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="{{ path('app_user_show_bills') }}">Mes Devis</a>
+									<a class="dropdown-item" href="{{ path('app_user_show_bills') }}">Mes Documents</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{ path('app_user_show_contacts')}}">Mes Messages</a>
@@ -80,7 +80,7 @@
 									<a class="dropdown-item" href="{{ path('app_user_index') }}">Gestion Utilisateurs</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="{{ path('app_bill_index') }}">Gestion Devis</a>
+									<a class="dropdown-item" href="{{ path('app_bill_index') }}">Gestion Documents</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{ path('app_contact_index') }}">Gestion Messages</a>
@@ -89,7 +89,7 @@
 									<a class="dropdown-item" href="{{ path('app_commentary_index') }}">Gestion Commentaires</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="{{ path('app_category_index') }}">Gestion Catégories de Clients</a>
+									<a class="dropdown-item" href="{{ path('app_category_index') }}">Gestion Catégories de Coaching</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{ path('app_service_index') }}">Gestion Coachings/Accompagnements</a>

@@ -14,16 +14,23 @@
             <h2 class="card-title col-8 my-2 ">Coaching, Conseil RH et Formation</h2>
             <h3 class="card-text col-12 my-2">Découvrez mes domaines d’intervention selon votre profil et vos attentes.</h3>
             <h5 class="card-text col-12 my-2">Inscrivez vous gratuitement puis prenez un RDV d’Information en choisissant le Coaching qui vous intéresse. (par Visio-conférence ou Tél)</h5>
-            <p class="card-text col-12 my-2">Suite à ce premier rendez-vous, un devis personnalisé sera envoyé dans votre Espace Utilisateur, suivant le nombre de séances fixées, vous aurez alors la possibilité de réserver vos séances sur le calendrier de mes disponibilités afin de constituer votre agenda des séances de Coaching/Accompagnement.</p>
+            <p class="card-text col-12 my-2">Suite à ce premier rendez-vous, un devis personnalisé sera envoyé dans votre Espace Utilisateur dans "Mes Documents", suivant le nombre de séances fixées, vous aurez alors la possibilité de réserver vos séances sur le calendrier de mes disponibilités afin de constituer votre agenda des séances de Coaching/Accompagnement.</p> 
+            <p class="card-text col-12 my-2">Pour toutes les prestations vous avez la possibilité de réserver et visualiser vos séances dans votre agenda "Mes Rdvs".</p> 
             <h5 class="text-danger card-text col-12 my-4"><i class="fa fa-user fa-fade mx-2">Inscrivez vous GRATUITEMENT</i></h5>
-            <h5 class="text-warning card-text col-12 my-2">Cliquez sur Prendre un RDV</h5>
             {% if not app.user %}
+                <h5 class="text-warning card-text col-12 my-2">Cliquez sur "Se connecter" pour vous inscrire</h5>
                 <div class="col-4 text-center">
-                    <a class="nav-link btn-action my-4" href="{{ path('app_login') }}" title="Se Connecter"><i class="fa fa-user fa-flip mx-2"></i>Se Connecter</a>
+                    <a class="nav-link btn-action my-4" href="{{ path('app_login') }}" title="Se Connecter"><i class="fa fa-user fa-flip mx-2"></i>Se connecter</a>
                 </div>
-            {% else %}
+            {% endif %}
+            {% if app.user and not is_granted ('ROLE_ADMIN') %}
                 <div class="col-4 text-center">
-                    <a class="nav-link btn-action my-4" href="{{ path('app_user_rdv') }}" title="Prendre un RDV"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
+                    <a class="nav-link btn-action my-4" href="{{ path('app_user_rdv') }}" title="Prendre un RDV avec le coach"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
+                </div>
+            {% endif %}
+            {% if app.user and is_granted ('ROLE_ADMIN') %}
+                <div class="col-4 text-center">
+                    <a class="nav-link btn-action my-4" href="{{ path('app_admin_rdvs') }}" title="Prendre un RDV avec un client"><i class="fa fa-calendar-day fa-flip mx-2"></i> Prendre un RDV</a>
                 </div>
             {% endif %}
         </div>
@@ -49,8 +56,8 @@
 
     <div class="card-service text-center my-5">
         <div class="card-body col-10 mx-5 my-4">
-            <h2 class="card-header my-2 col-12">Créez un Compte gratuitement pour profiter de votre Espace Utilisateur dédié</h2>
-            <h5 class="card-text my-2 col-12">Votre Tableau de Bord Utilisateur vous permettra de visualiser et d'accèder à toutes vos données.</h5>
+            <h2 class="card-header my-2 col-12">Créez un compte gratuitement pour profiter de votre espace utilisateur dédié</h2>
+            <h5 class="card-text my-2 col-12">Votre menu de naviguation et un tableau de bord utilisateur vous permettront de visualiser et d'accèder à toutes vos fonctionnalités.</h5>
         </div>
     </div>
 
